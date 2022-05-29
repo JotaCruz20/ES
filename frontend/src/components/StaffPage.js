@@ -27,7 +27,7 @@ export default class StaffPage extends Component {
     }
 
     render() {
-        if (this.state.error === true || this.state.token===null) {
+        if (this.state.error === true || this.state.token === null) {
             return (
                 <p>User não autenticado</p>
             );
@@ -37,17 +37,28 @@ export default class StaffPage extends Component {
                     <div className="checkList">
                         <div className="title">Pedidos:</div>
                         <div className="list-container">
-                            {this.state.pedidos.map((item, index) => (
-                                <div key={index}>
-                                    <span>{item["tag"] + ' ' + item["pedido"] + ' ' + item["StatusPedido"]}</span>
-                                </div>
-                            ))}
+                            <table>
+                                <tr>
+                                    <th>Tag</th>
+                                    <th>Pedido</th>
+                                    <th>Status</th>
+                                    <th>Data</th>
+                                </tr>
+                                {this.state.pedidos.map((item, index) => (
+                                    <tr>
+                                        <td>{item["tag"]}</td>
+                                        <td>{item["pedido"]}</td>
+                                        <td>{item["StatusPedido"]}</td>
+                                        <td> {item["id"].split("|")[0]}</td>
+                                    </tr>
+                                ))}
+                            </table>
                         </div>
                         <ButtonGroup disableElevation variant="contained" color="primary">
-                        <Button color="primary" to="/" component={Link}>
-                            LogOut
-                        </Button>
-                    </ButtonGroup>
+                            <Button color="primary" to="/" component={Link}>
+                                LogOut
+                            </Button>
+                        </ButtonGroup>
                     </div>
                 </div>
             );

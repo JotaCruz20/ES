@@ -29,7 +29,11 @@ class GetPedidos(APIView):
             table = dynamodb.Table('PedidosFinais')
             x = table.scan()
 
-            return JsonResponse(x['Items'], status=status.HTTP_200_OK, safe=False)
+            pedidos = x['Items']
+
+            pedidos = sorted(pedidos, key=lambda item: item['id'].split("|")[0])
+
+            return JsonResponse(pedidos, status=status.HTTP_200_OK, safe=False)
         else:
             return JsonResponse({'Message: User not authenticated'}, status=status.HTTP_401_UNAUTHORIZED)
 

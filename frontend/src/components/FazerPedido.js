@@ -24,6 +24,7 @@ export default class FazerPedido extends Component {
         this.getPrice = this.getPrice.bind(this);
         this.confirmRequest = this.confirmRequest.bind(this);
         this.backButton = this.backButton.bind(this);
+        this.handleChangeInput = this.handleChangeInput.bind(this);
     }
 
     async componentDidMount() {
@@ -33,6 +34,12 @@ export default class FazerPedido extends Component {
             pratos: data,
             enabled: Array(data.length).fill('false'),
             loading: false
+        });
+    }
+
+    handleChangeInput(){
+        this.setState({
+
         });
     }
 
@@ -200,7 +207,7 @@ export default class FazerPedido extends Component {
                         <br/>
                         <div>
                             <label htmlFor="tentacles">Número da Tag:</label>
-                            <input type="number" min="1" id="tag" max="999"/>
+                            <input type="number" min="1" id="tag" max="999" onChange={this.handleChangeInput}/>
                         </div>
                         <br/>
                         <div id="Photo" hidden="true">
